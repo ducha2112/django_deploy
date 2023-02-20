@@ -1,0 +1,55 @@
+
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  Кабинет пользователя
+{% endblock %}
+
+{% block content %}
+
+
+    <form method="post" enctype="multipart/form-data" class="form-register mt-4">
+        <h1>Кабинет пользователя</h1>
+        <div class="d-flex text-muted pt-3">
+      <img class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="64" height="64" src="{{ user.profile.img.url }}">
+      <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <strong class="d-block text-gray-dark">@{{ user.username }}</strong>
+        {% if user.email %}
+        <b>Email: </b> {{ user.email }}
+        {% endif %}
+      </p>
+    </div>
+        <hr>
+        <h2>Изменить данные про пользователя</h2>
+    <!--  Обязательный параметр для передачи csrf_token-->
+        {% csrf_token %}
+        {{ updateUserForm.as_p }}
+        {{ profileForm.as_p }}
+        {{ genderUser.as_p }}
+        <button class="btn btn-outline-warning" type="submit">Обновить</button>
+
+        {% if user.is_superuser %}
+            <a href="{% url 'index' %}" class="btn btn-info">Администрирование сайта</a>
+        {% endif %}
+
+    </form>
+
+{% endblock %}
+
+
+{% block aside_block %}
+<h4 class="mt-2">Интересные статьи</h4>
+<img src="https://itproger.com/img/news/1591879929.jpg" class="img-thumbnail">
+<p>Уже не первый год слышно много положительных отзывов про движок Godot. Пришло время узнать больше об этом движке и выяснить почему он столь популярен.</p>
+
+<a href="https://itproger.com/news/285" target="_blank">
+  <button class="btn btn-warning">Посмотреть</button>
+</a>
+
+<img src="https://itproger.com/img/news/1589893627.jpg" class="img-thumbnail mt-4">
+<p>Для многих Python - это язык для написания веб проектов, машинного обучения или для анализа данных. На самом деле он более функционален и в этой статье мы вам это докажем.</p>
+
+<a href="https://itproger.com/news/285" target="_blank">
+  <button class="btn btn-warning">Посмотреть</button>
+</a>
+{% endblock %}
