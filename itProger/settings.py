@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'some_random_default_string')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG',False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["ducha2112.pythonanywhere.com",]
 
 
 # Application definition
